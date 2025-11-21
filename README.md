@@ -26,10 +26,30 @@ python main.py --token "y0__xxxxxxxxxxxxxxx-xxxxxxxxxxxx_xxxxxxxx-xxxxxxxxxxx-xx
 
 ## Getting Token
 
-1. Open Yandex.Music in your browser
-2. Press F12 → Application tab → Local Storage
-3. Find the `access_token` or `token` key
-4. Copy the token value
+**You cannot create your own OAuth application. The only option is to use the official Yandex.Music client applications.**
+
+### Available Methods:
+
+- **[Website](https://music-yandex-bot.ru/)** (may not work for all accounts)
+- **[Android APK](https://github.com/MarshalX/yandex-music-token/releases)**
+- **[Chrome Extension](https://chrome.google.com/webstore/detail/yandex-music-token/lcbjeookjibfhjjopieifgjnhlegmkib)**
+- **[Firefox Extension](https://addons.mozilla.org/en-US/firefox/addon/yandex-music-token/)**
+
+All methods above provide open-source code available [here](https://github.com/MarshalX/yandex-music-token).
+
+### Easiest Method (Browser):
+
+1. Open browser DevTools and enable network throttling in the Network tab
+2. Visit: [https://oauth.yandex.ru/authorize?response_type=token&client_id=23cabbbdc6cd418abb4b39c32c41195d](https://oauth.yandex.ru/authorize?response_type=token&client_id=23cabbbdc6cd418abb4b39c32c41195d)
+3. Log in and grant permissions
+4. The browser will redirect to a URL like: `https://music.yandex.ru/#access_token=AQAAAAAYc***&token_type=bearer&expires_in=31535645`
+5. Copy the token from the `access_token` parameter in the URL
+
+> **Tip:** The redirect happens quickly, so enable network throttling to capture the token.
+
+### Network Throttling Guides:
+- [Chrome](https://www.browserstack.com/guide/how-to-perform-network-throttling-in-chrome)
+- [Firefox](https://firefox-source-docs.mozilla.org/devtools-user/network_monitor/throttling/index.html)
 
 ## Project Structure
 
@@ -44,10 +64,12 @@ YMD-of-favorite-tracks/
 ## Features
 
 - Download your favorite tracks from Yandex.Music
-- Asynchronous processing 
+- Asynchronous processing for faster downloads
 - Customizable download directory
 - Colored console logging
 
 ---
-## Blog [chuhandev.t.me](https://t.me/chuhandev)
-**Note:** Not an official project
+
+**Developer Blog:** [chuhandev.t.me](https://t.me/chuhandev)
+
+*Note: This is not an official Yandex project*
