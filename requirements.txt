@@ -1,0 +1,3 @@
+yandex-music
+aiohttp
+aiofiles
