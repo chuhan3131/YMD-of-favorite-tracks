@@ -2,6 +2,10 @@
 
 Asynchronous downloader for favorite tracks from Yandex.Music.
 
+![ymd](https://github.com/user-attachments/assets/017742f0-2d90-4052-b014-c4315a356e31)
+
+
+
 ## Installation
 
 ```bash
