@@ -4,7 +4,7 @@ import aiohttp
 import aiofiles
 from yandex_music import Client
 import time
-from logger import success, warning, error, info, track, debug
+from logger import success, warning, error, info, debug, gray
 
 
 async def get_track_info(client, like, index: int, semaphore):
@@ -65,7 +65,8 @@ async def download_track(session, track_info, download_dir, total_tracks, semaph
     
     if os.path.exists(filepath):
         counter['completed'] += 1
-        logger.info(f"[{counter['completed']}/{total_tracks}] Pass {track(track_info['artist'])} - {track_info['title']}")
+        counter_text = gray(f"[{counter['completed']}/{total_tracks}]")
+        logger.info(f"{counter_text} Pass {track_info['artist']} - {track_info['title']}")
         return True
     
     async with semaphore:
@@ -85,18 +86,21 @@ async def download_track(session, track_info, download_dir, total_tracks, semaph
                 speed = file_size / 1024 / 1024 / download_time if download_time > 0 else 0
                 
                 counter['completed'] += 1
-                logger.info(f"[{counter['completed']}/{total_tracks}] {success('Success')} {track(track_info['artist'])} - {track_info['title']} ({info(f'{speed:.1f} MB/s')})")
+                counter_text = gray(f"[{counter['completed']}/{total_tracks}]")
+                logger.info(f"{counter_text} {success('Success')} {track_info['artist']} - {track_info['title']} ({info(f'{speed:.1f} MB/s')})")
                 return True
                 
         except Exception as e:
             counter['completed'] += 1
-            logger.info(f"[{counter['completed']}/{total_tracks}] Error {error('Error:')} {track(track_info['artist'])} - {track_info['title']}")
+            counter_text = gray(f"[{counter['completed']}/{total_tracks}]")
+            logger.info(f"{counter_text} Error {error('Error:')} {track_info['artist']} - {track_info['title']}")
             if os.path.exists(filepath):
                 try:
                     os.remove(filepath)
                 except:
                     pass
             return False
+
 
 async def download_all_tracks(token, download_dir, logger):
     start_time = time.time()
