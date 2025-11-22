@@ -6,7 +6,7 @@ import argparse
 from yandex_music import Client
 
 from downloader import download_all_tracks
-from logger import setup_logger, success, warning, error, info, track
+from logger import setup_logger, success, warning, error, info, gray
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -71,9 +71,9 @@ async def main():
         
         total_tracks = len(likes.tracks)
         
-        logger.info(f"Logged in as: {info(user_info.account.login)}")
-        logger.info(f"Total tracks: {info(total_tracks)}")
-        logger.info(f"Folder: {info(args.directory)}")
+        logger.info(f"{gray('Logged in as:')} {info(user_info.account.login)}")
+        logger.info(f"{gray('Total tracks:')} {info(total_tracks)}")
+        logger.info(f"{gray('Folder:')} {info(args.directory)}")
         
         start_time = time.time()
 
@@ -86,7 +86,7 @@ async def main():
         end_time = time.time()
         total_time = end_time - start_time
 
-        logger.info(f"{success(f'Download completed successfully in {total_time:.2f} seconds!')}")
+        logger.info(f"{success('Download completed successfully')} in {total_time:.2f}!")
 
                 
     except KeyboardInterrupt:
